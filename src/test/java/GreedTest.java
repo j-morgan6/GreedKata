@@ -6,10 +6,37 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GreedTest {
     @Test
-    @DisplayName("roll a random number between 1 and 6")
-    public void RollOne() {
+    @DisplayName("int array with 1 die roll")
+    public void oneRollTest() {
         Greed greedTest = new Greed();
-        int rollTest = greedTest.roll(1);
-        assertTrue(rollTest >= 1 && rollTest <= 6);
+        int[] diceRolls = new int[1];
+        greedTest.roll(diceRolls);
+        assertTrue(diceRolls[0] >= 1 && diceRolls[0] <= 6);
+    }
+
+    @Test
+    @DisplayName("testing a roll with multiple die")
+    public void multiDieRoll() {
+        Greed greedTest = new Greed();
+        int[] diceRolls = new int[6];
+        greedTest.roll(diceRolls);
+        for (int roll: diceRolls)
+            assertTrue(roll >= 1 && roll <= 6);
+    }
+
+    @Test
+    @DisplayName("test score dice roll 1 = 100 points")
+    public void testScoreRollOne() {
+        Greed greedTest = new Greed();
+        int[] rollOne = {1};
+        assertEquals(100, greedTest.score(rollOne));
+    }
+
+    @Test
+    @DisplayName("test score for a dice roll of 5")
+    public void testScoreRollFive() {
+        Greed greedTest = new Greed();
+        int[] rollOne = {5};
+        assertEquals(50, greedTest.score(rollOne));
     }
 }
